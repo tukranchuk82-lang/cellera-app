@@ -1,0 +1,822 @@
+/* ============================================================
+   Cellera — design system
+   Палитра снята с логотипа: акварель на тёплой бумаге.
+   ============================================================ */
+
+:root {
+  --paper: #f7f4ef;
+  --paper-deep: #f0ebe3;
+  --card: #fffdf9;
+
+  --sage: #9db3a0;
+  --sage-deep: #6e8874;
+  --sage-wash: #e7ede7;
+
+  --rose: #e0b4ae;
+  --rose-deep: #c08c85;
+  --rose-wash: #f6e9e6;
+
+  --ochre: #d2a24c;
+  --ochre-deep: #b0812f;
+  --ochre-wash: #f7edd9;
+
+  --cream: #efe3d2;
+
+  --ink: #2e2a26;
+  --ink-soft: #6b635a;
+  --ink-faint: #9c9287;
+
+  --warn: #c77b62;
+  --warn-wash: #fbeee8;
+
+  --line: #e6ded2;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+
+  --shadow: 0 1px 2px rgba(46, 42, 38, 0.04), 0 8px 24px -12px rgba(46, 42, 38, 0.14);
+  --shadow-lift: 0 2px 4px rgba(46, 42, 38, 0.05), 0 16px 40px -16px rgba(46, 42, 38, 0.2);
+
+  --tab-h: 68px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #211d1a;
+    --paper-deep: #1a1714;
+    --card: #2a2521;
+    --sage-wash: #2c332d;
+    --rose-wash: #352b2a;
+    --ochre-wash: #332c1f;
+    --cream: #3a332a;
+    --ink: #ede7df;
+    --ink-soft: #a9a096;
+    --ink-faint: #7d746a;
+    --line: #3a332c;
+    --warn-wash: #38281f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px -16px rgba(0, 0, 0, 0.6);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper-deep);
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* ---------- бумажная текстура ---------- */
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+/* ---------- каркас телефона ---------- */
+.shell {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--paper);
+  overflow-x: hidden;
+  box-shadow: 0 0 60px -20px rgba(46, 42, 38, 0.25);
+}
+
+.scroll {
+  position: relative;
+  z-index: 1;
+  padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom) + 24px);
+}
+
+/* ---------- акварельные пятна ---------- */
+.blobs {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 520px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.42;
+}
+.blob.a {
+  width: 300px;
+  height: 300px;
+  background: var(--sage);
+  top: -110px;
+  left: -90px;
+}
+.blob.b {
+  width: 260px;
+  height: 260px;
+  background: var(--rose);
+  top: -60px;
+  right: -100px;
+}
+.blob.c {
+  width: 240px;
+  height: 240px;
+  background: var(--ochre);
+  top: 150px;
+  right: 30px;
+  opacity: 0.22;
+}
+@media (prefers-color-scheme: dark) {
+  .blob {
+    opacity: 0.16;
+  }
+  .blob.c {
+    opacity: 0.1;
+  }
+}
+
+/* ---------- типографика ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin: 0;
+  line-height: 1.18;
+}
+h1 {
+  font-size: 34px;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 21px;
+}
+p {
+  margin: 0 0 14px;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-size: 30px;
+  line-height: 1;
+}
+.tagline {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-size: 11.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.lead {
+  font-size: 18.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.muted {
+  color: var(--ink-soft);
+}
+.small {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.tiny {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+/* ---------- раскладка ---------- */
+.pad {
+  padding: 0 20px;
+}
+.sec {
+  margin-top: 34px;
+}
+.sec-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  margin: 0 0 14px;
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 28px 0;
+  background: linear-gradient(90deg, transparent, var(--line) 18%, var(--line) 82%, transparent);
+}
+
+/* ---------- шапка экрана ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top));
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.topbar.scrolled {
+  border-bottom-color: var(--line);
+}
+.topbar .t-title {
+  font-family: var(--serif);
+  font-size: 19px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.iconbtn {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease), background 0.15s;
+}
+.iconbtn:active {
+  transform: scale(0.92);
+  background: var(--cream);
+}
+
+/* ---------- карточки ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.tap {
+  cursor: pointer;
+  transition: transform 0.16s var(--ease), box-shadow 0.16s var(--ease);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.tap:active {
+  transform: scale(0.975);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 16px 20px;
+  border: 0;
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease), filter 0.15s;
+}
+.btn:active {
+  transform: scale(0.975);
+  filter: brightness(0.96);
+}
+.btn-primary {
+  background: var(--ochre);
+  color: #fff;
+  box-shadow: 0 8px 20px -8px rgba(210, 162, 76, 0.7);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--sage-deep);
+  border: 1.5px solid var(--sage);
+}
+
+/* ---------- поиск ---------- */
+.search {
+  position: relative;
+}
+.search input {
+  width: 100%;
+  padding: 17px 46px 17px 48px;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 100px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search input::placeholder {
+  color: var(--ink-faint);
+}
+.search input:focus {
+  border-color: var(--sage);
+  box-shadow: 0 0 0 4px var(--sage-wash);
+}
+.search .s-ico {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+  pointer-events: none;
+}
+.search .s-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: var(--cream);
+  color: var(--ink-soft);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* ---------- жетон соли ---------- */
+.salt-dot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+  isolation: isolate;
+}
+.salt-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  opacity: 0.24;
+  color: inherit;
+}
+.salt-dot.sz-lg {
+  width: 54px;
+  height: 54px;
+  font-size: 24px;
+}
+.salt-dot.sz-md {
+  width: 42px;
+  height: 42px;
+  font-size: 19px;
+}
+.salt-dot.sz-sm {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+}
+
+/* ---------- строка соли внутри состояния ---------- */
+.salt-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.salt-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.salt-row:first-child {
+  padding-top: 0;
+}
+.salt-row .sr-name {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.2;
+}
+.salt-row .sr-pot {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ochre-deep);
+  background: var(--ochre-wash);
+  padding: 2px 8px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-left: 7px;
+  vertical-align: 2px;
+}
+.salt-row .sr-note {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ---------- предупреждение ---------- */
+.warnbox {
+  background: var(--warn-wash);
+  border: 1px solid color-mix(in srgb, var(--warn) 26%, transparent);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+}
+.warnbox .w-title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warn);
+  margin-bottom: 7px;
+}
+.warnbox p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ---------- раскрывающийся блок ---------- */
+.acc {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  overflow: hidden;
+}
+.acc + .acc {
+  margin-top: 10px;
+}
+.acc-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 18px;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--serif);
+  font-size: 19px;
+  color: var(--ink);
+}
+.acc-head .chev {
+  margin-left: auto;
+  color: var(--ink-faint);
+  transition: transform 0.24s var(--ease);
+  flex: none;
+}
+.acc.open .acc-head .chev {
+  transform: rotate(90deg);
+}
+.acc-body {
+  padding: 0 18px 18px;
+  font-size: 15.5px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+}
+
+/* ---------- плитки групп ---------- */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--card);
+  padding: 15px 15px 17px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--shadow);
+}
+.tile .tile-blob {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.5;
+  top: -30px;
+  right: -22px;
+}
+.tile .tile-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.2;
+  position: relative;
+}
+.tile .tile-count {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  margin-top: 3px;
+  position: relative;
+}
+
+/* плашка во всю ширину — по одной в ряд */
+.grid1 {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.tile.wide {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 16px 17px;
+}
+.tile.wide .tile-blob {
+  width: 130px;
+  height: 130px;
+  top: -46px;
+  right: -34px;
+  filter: blur(26px);
+  opacity: 0.45;
+}
+.tile.wide .tw-dots {
+  display: flex;
+  gap: 4px;
+  flex: none;
+  position: relative;
+}
+.tile.wide .tw-body {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+.tile.wide .tile-name {
+  font-size: 19px;
+}
+
+/* ---------- список ссылок ---------- */
+.list {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 17px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.14s;
+}
+.list-item:last-child {
+  border-bottom: 0;
+}
+.list-item:active {
+  background: var(--cream);
+}
+.list-item .li-title {
+  font-size: 16.5px;
+  line-height: 1.3;
+}
+.list-item .li-sub {
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+.list-item .chev {
+  margin-left: auto;
+  color: var(--ink-faint);
+  flex: none;
+}
+
+/* ---------- нижняя панель ---------- */
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(150%) blur(18px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbtn {
+  border: 0;
+  background: none;
+  padding: 10px 2px 9px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color 0.18s;
+}
+.tabbtn.on {
+  color: var(--sage-deep);
+}
+.tabbtn .ti {
+  transition: transform 0.22s var(--ease);
+}
+.tabbtn.on .ti {
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* ---------- герой автора ---------- */
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 22%;
+  border-radius: var(--r-lg);
+  display: block;
+  background: var(--cream);
+}
+
+.credential {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  line-height: 1.5;
+  padding: 9px 0;
+}
+.credential .cd-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ochre);
+  margin-top: 8px;
+}
+
+.quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 23px;
+  line-height: 1.4;
+  color: var(--sage-deep);
+  padding-left: 18px;
+  border-left: 2px solid var(--sage);
+}
+
+.story-h {
+  font-family: var(--serif);
+  font-size: 25px;
+  margin: 0 0 12px;
+}
+.story p {
+  font-size: 16.5px;
+  line-height: 1.68;
+  color: var(--ink-soft);
+  margin-bottom: 15px;
+}
+.story p.hl {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.42;
+  padding: 4px 0;
+}
+
+/* ---------- чипы ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 100px;
+  padding: 8px 15px;
+  font-size: 14.5px;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--sans);
+  transition: background 0.15s, border-color 0.15s;
+}
+.chip:active {
+  background: var(--cream);
+}
+.chip.on {
+  background: var(--sage-wash);
+  border-color: var(--sage);
+  color: var(--sage-deep);
+  font-weight: 700;
+}
+
+/* ---------- шпаргалка ---------- */
+.cheat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.cheat:last-child {
+  border-bottom: 0;
+}
+.cheat .ch-l {
+  font-size: 15.5px;
+  flex: 1;
+}
+
+/* ---------- анимация появления ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.42s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- дисклеймер ---------- */
+.disclaimer {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 26px 8px 6px;
+}
