@@ -1,8 +1,8 @@
 import { AUTHOR, LINKS, DISCLAIMER } from '../data/content'
-import { TopBar, IcoChevron } from '../ui'
+import { TopBar, IcoChevron, asset } from '../ui'
 import { openBot, openExternal, haptic } from '../lib/tg'
 
-const PHOTOS = ['/img/anna-1.jpg', '/img/anna-3.jpg']
+const PHOTOS = [asset('img/anna-1.jpg'), asset('img/anna-3.jpg')]
 
 export default function About({ onBack }: { onBack: () => void }) {
   return (
