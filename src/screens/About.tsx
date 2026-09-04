@@ -1,6 +1,6 @@
 import { AUTHOR, LINKS, DISCLAIMER } from '../data/content'
 import { TopBar, IcoChevron, asset } from '../ui'
-import { openBot, openExternal, haptic } from '../lib/tg'
+import { openExternal } from '../lib/tg'
 
 const PHOTOS = [asset('img/anna-1.jpg'), asset('img/anna-3.jpg')]
 
@@ -53,21 +53,7 @@ export default function About({ onBack }: { onBack: () => void }) {
         <hr className="rule" />
 
         <div className="list">
-          <div
-            className="list-item"
-            onClick={() => {
-              haptic('light')
-              openBot(LINKS.bot, 'about')
-            }}
-          >
-            <div>
-              <div className="li-title">Задать вопрос</div>
-              <div className="li-sub">Telegram-бот с ИИ-помощником</div>
-            </div>
-            <span className="chev">
-              <IcoChevron />
-            </span>
-          </div>
+          {/* скрыто: пока не показываем ИИ-консультации через бота */}
           <div className="list-item" onClick={() => openExternal(LINKS.taplink)}>
             <div>
               <div className="li-title">Записаться на консультацию</div>

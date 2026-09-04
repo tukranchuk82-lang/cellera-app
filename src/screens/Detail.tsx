@@ -1,9 +1,9 @@
 import type { Nav } from '../nav'
 import { CONDITIONS, conditionBySlug, conditionsInGroup, groupById } from '../data/conditions'
 import { SALTS, saltByN, CHEATSHEET, INFLAMMATION_STAGES } from '../data/salts'
-import { LINKS, HOT_SEVEN_TEXT, DISCLAIMER } from '../data/content'
+import { HOT_SEVEN_TEXT, DISCLAIMER } from '../data/content'
 import { TopBar, SaltDot, IcoChevron, HotSeven, WarnBox, Section, Accordion } from '../ui'
-import { openBot, haptic } from '../lib/tg'
+import { haptic } from '../lib/tg'
 
 /* ==================== экран группы ==================== */
 
@@ -121,20 +121,7 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
           </Section>
         )}
 
-        <Section>
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              haptic('medium')
-              openBot(LINKS.bot, `q_${c.slug}`)
-            }}
-          >
-            Задать вопрос эксперту
-          </button>
-          <p className="tiny" style={{ textAlign: 'center', marginTop: 10 }}>
-            Откроется бот — он уже будет знать, что вы читали про «{c.title.toLowerCase()}»
-          </p>
-        </Section>
+        {/* скрыто: пока не показываем ИИ-консультации через бота */}
 
         <p className="disclaimer">{DISCLAIMER}</p>
       </div>

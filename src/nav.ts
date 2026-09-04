@@ -20,5 +20,5 @@ export const TABS: { id: TabId; label: string }[] = [
   { id: 'intro', label: 'О солях' },
   { id: 'help', label: 'Помощь' },
   { id: 'buy', label: 'Купить' },
-  { id: 'consult', label: 'Вопрос' },
+  // { id: 'consult', label: 'Вопрос' }, // скрыто: пока не показываем ИИ-консультации
 ]
