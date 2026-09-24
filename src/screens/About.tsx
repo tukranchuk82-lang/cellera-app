@@ -2,7 +2,7 @@ import { AUTHOR, LINKS, DISCLAIMER } from '../data/content'
 import { TopBar, IcoChevron, asset } from '../ui'
 import { openExternal } from '../lib/tg'
 
-const PHOTOS = [asset('img/anna-1.jpg'), asset('img/anna-3.jpg')]
+const PHOTOS = [asset('img/anna-about-hero.jpg'), asset('img/anna-about-story.jpg')]
 
 export default function About({ onBack }: { onBack: () => void }) {
   return (
@@ -45,7 +45,7 @@ export default function About({ onBack }: { onBack: () => void }) {
               {block.after?.map((t, j) => (
                 <p key={`a${j}`}>{t}</p>
               ))}
-              {i === 2 && <img className="hero-photo" style={{ aspectRatio: '3/2', marginTop: 6 }} src={PHOTOS[1]} alt="" />}
+              {i === 2 && <img className="hero-photo" style={{ marginTop: 6 }} src={PHOTOS[1]} alt="" />}
             </section>
           ))}
         </div>

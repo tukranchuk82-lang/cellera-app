@@ -44,9 +44,9 @@ export default function Home({ nav }: { nav: Nav }) {
           }}
         >
           <img
-            src={asset('img/anna-2.jpg')}
+            src={asset('img/anna-home.jpg')}
             alt=""
-            style={{ width: '100%', display: 'block', aspectRatio: '3/2', objectFit: 'cover', objectPosition: '50% 22%' }}
+            style={{ width: '100%', display: 'block', aspectRatio: '4/5', objectFit: 'cover' }}
           />
           <div style={{ padding: 20 }}>
             <div className="eyebrow">Об авторе</div>
