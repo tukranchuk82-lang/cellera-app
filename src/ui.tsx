@@ -62,12 +62,6 @@ export const IcoSearch = ({ s = 19 }: IcoProps) => (
   </svg>
 )
 
-export const IcoDrop = ({ s = 20 }: IcoProps) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3z" />
-  </svg>
-)
-
 /* ============================ жетон соли ============================ */
 
 export function SaltDot({ n, size = 'md', onClick }: { n: number; size?: 'sm' | 'md' | 'lg'; onClick?: () => void }) {
@@ -125,34 +119,6 @@ export function Accordion({ title, children, defaultOpen = false }: { title: str
         </span>
       </button>
       {open && <div className="acc-body">{children}</div>}
-    </div>
-  )
-}
-
-/* ============================ блок «горячая семёрка» ============================ */
-
-export function HotSeven({ text }: { text: string }) {
-  return (
-    <div
-      className="card"
-      style={{
-        background: 'var(--ochre-wash)',
-        borderColor: 'color-mix(in srgb, var(--ochre) 30%, transparent)',
-      }}
-    >
-      <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-        <span style={{ color: 'var(--ochre-deep)', flex: 'none', marginTop: 2 }}>
-          <IcoDrop />
-        </span>
-        <div>
-          <div style={{ fontWeight: 700, fontSize: 14, letterSpacing: '.03em', color: 'var(--ochre-deep)', marginBottom: 5 }}>
-            МЕТОД «ГОРЯЧЕЙ СЕМЁРКИ»
-          </div>
-          <div className="small" style={{ color: 'var(--ink-soft)' }}>
-            {text}
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

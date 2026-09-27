@@ -2,7 +2,7 @@ import type { Nav } from '../nav'
 import { CONDITIONS, conditionBySlug, conditionsInGroup, groupById } from '../data/conditions'
 import { SALTS, saltByN, CHEATSHEET, INFLAMMATION_STAGES } from '../data/salts'
 import { HOT_SEVEN_TEXT, DISCLAIMER } from '../data/content'
-import { TopBar, SaltDot, IcoChevron, HotSeven, WarnBox, Section, Accordion } from '../ui'
+import { TopBar, SaltDot, IcoChevron, WarnBox, Section, Accordion } from '../ui'
 import { haptic } from '../lib/tg'
 
 /* ==================== экран группы ==================== */
@@ -93,12 +93,6 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
             })}
           </div>
         </Section>
-
-        {c.hotSeven && (
-          <Section>
-            <HotSeven text={c.hotSeven} />
-          </Section>
-        )}
 
         {c.tips && c.tips.length > 0 && (
           <Section title="Что ещё поможет">
