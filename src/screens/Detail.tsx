@@ -69,30 +69,32 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
           </p>
         </div>
 
-        <Section title="Какие соли">
-          <div className="card">
-            {c.salts.map((use, i) => {
-              const salt = saltByN(use.n)
-              return (
-                <div className="salt-row" key={i}>
-                  <SaltDot n={use.n} size="md" onClick={() => nav.push({ k: 'salt', n: use.n })} />
-                  <div style={{ minWidth: 0 }}>
-                    <div>
-                      <span className="sr-name" onClick={() => nav.push({ k: 'salt', n: use.n })} style={{ cursor: 'pointer' }}>
-                        {salt.ru}
-                      </span>
-                      {use.potency && <span className="sr-pot">{use.potency}</span>}
+        {c.salts.length > 0 && (
+          <Section title="Какие соли">
+            <div className="card">
+              {c.salts.map((use, i) => {
+                const salt = saltByN(use.n)
+                return (
+                  <div className="salt-row" key={i}>
+                    <SaltDot n={use.n} size="md" onClick={() => nav.push({ k: 'salt', n: use.n })} />
+                    <div style={{ minWidth: 0 }}>
+                      <div>
+                        <span className="sr-name" onClick={() => nav.push({ k: 'salt', n: use.n })} style={{ cursor: 'pointer' }}>
+                          {salt.ru}
+                        </span>
+                        {use.potency && <span className="sr-pot">{use.potency}</span>}
+                      </div>
+                      <div className="tiny" style={{ marginTop: 1, fontStyle: 'italic' }}>
+                        {salt.latin}
+                      </div>
+                      <div className="sr-note">{use.note}</div>
                     </div>
-                    <div className="tiny" style={{ marginTop: 1, fontStyle: 'italic' }}>
-                      {salt.latin}
-                    </div>
-                    <div className="sr-note">{use.note}</div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
-        </Section>
+                )
+              })}
+            </div>
+          </Section>
+        )}
 
         {c.tips && c.tips.length > 0 && (
           <Section title="Что ещё поможет">
