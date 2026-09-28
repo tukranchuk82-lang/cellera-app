@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 import { TABS, type Nav, type TabId, type View } from './nav'
 import { IcoHome, IcoBook, IcoLeaf, IcoBag, IcoChat } from './ui'
 import { initTelegram, setBackButton, haptic, inTelegram } from './lib/tg'
+import { captureChannelFromUrl } from './lib/channel'
 
 import Home from './screens/Home'
 import About from './screens/About'
@@ -26,6 +27,7 @@ export default function App() {
 
   useEffect(() => {
     initTelegram()
+    captureChannelFromUrl()
     document.body.classList.add('paper-grain')
   }, [])
 

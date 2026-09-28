@@ -1,6 +1,19 @@
 import { LINKS, AUTHOR, DISCLAIMER } from '../data/content'
 import { TopBar, Section, IcoChat, IcoChevron } from '../ui'
 import { openBot, openExternal, haptic } from '../lib/tg'
+import { getKnownChannel, type Channel } from '../lib/channel'
+
+const BOT_LINK: Record<Channel, string> = {
+  telegram: LINKS.botTelegram,
+  vk: LINKS.botVk,
+  max: LINKS.botMax,
+}
+
+const MESSENGERS: { channel: Channel; label: string }[] = [
+  { channel: 'telegram', label: 'Telegram' },
+  { channel: 'vk', label: 'ВКонтакте' },
+  { channel: 'max', label: 'MAX' },
+]
 
 const CAN = [
   'Подобрать соль или биокомбинацию под ваши симптомы',
@@ -16,6 +29,8 @@ const CANNOT = [
 ]
 
 export default function Consult() {
+  const known = getKnownChannel()
+
   return (
     <>
       <TopBar title="Получить консультацию" />
@@ -48,15 +63,40 @@ export default function Consult() {
         </div>
 
         <Section>
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              haptic('medium')
-              openBot(LINKS.bot, 'consult')
-            }}
-          >
-            Открыть чат с помощником
-          </button>
+          {known ? (
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                haptic('medium')
+                openBot(BOT_LINK[known.channel], 'consult')
+              }}
+            >
+              Открыть чат с помощником
+            </button>
+          ) : (
+            <>
+              <p className="small" style={{ textAlign: 'center', marginBottom: 10 }}>
+                Где вам удобнее общаться?
+              </p>
+              <div className="list">
+                {MESSENGERS.map(({ channel, label }) => (
+                  <div
+                    key={channel}
+                    className="list-item"
+                    onClick={() => {
+                      haptic('light')
+                      openBot(BOT_LINK[channel], 'consult')
+                    }}
+                  >
+                    <div className="li-title">{label}</div>
+                    <span className="chev">
+                      <IcoChevron />
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </Section>
 
         <Section title="С чем поможет">

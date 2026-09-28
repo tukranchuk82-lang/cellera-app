@@ -1,11 +1,14 @@
 /** Контакты и ссылки — единая точка правки */
 export const LINKS = {
-  bot: 'https://t.me/varnitsassalts', // ЗАГЛУШКА — заменить на бота, когда дадут
   vk: 'https://vk.com/varnitsa.site',
   tg: 'https://t.me/varnitsassalts',
   taplink: 'https://taplink.cc/bjain',
   ozon: '#',
   wb: '#',
+  // Боты с ИИ-консультантом (SaleBot) — ЗАГЛУШКИ, заменить на реальные ссылки
+  botTelegram: 'https://t.me/REPLACE_ME',
+  botVk: 'https://vk.me/REPLACE_ME',
+  botMax: 'https://max.ru/REPLACE_ME',
 }
 
 export const AUTHOR = {
