@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Nav } from '../nav'
-import { AUTHOR, DISCLAIMER } from '../data/content'
+import { AUTHOR, DISCLAIMER, WORDING } from '../data/content'
 import { CONDITIONS, groupById, searchConditions } from '../data/conditions'
 import { IcoSearch, IcoChevron, SaltDot, Section, asset } from '../ui'
 import { haptic } from '../lib/tg'
@@ -88,7 +88,7 @@ export default function Home({ nav }: { nav: Nav }) {
             </div>
             <h3 style={{ marginBottom: 7 }}>Что такое соли Шюсслера</h3>
             <p className="small muted" style={{ margin: 0 }}>
-              Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и когда нужна осторожность.
+              Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и {WORDING.introTeaser}.
             </p>
             <div
               style={{

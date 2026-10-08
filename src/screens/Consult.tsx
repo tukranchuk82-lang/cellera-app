@@ -10,10 +10,10 @@ const BOT_LINK: Record<Channel, string> = {
 }
 
 const MESSENGERS: { channel: Channel; label: string }[] = [
-  { channel: 'telegram', label: 'Telegram' },
-  { channel: 'vk', label: 'ВКонтакте' },
-  { channel: 'max', label: 'MAX' },
-]
+  { channel: 'telegram' as const, label: 'Telegram' },
+  { channel: 'vk' as const, label: 'ВКонтакте' },
+  { channel: 'max' as const, label: 'MAX' },
+].filter((m) => BOT_LINK[m.channel])
 
 const CAN = [
   'Подобрать соль или биокомбинацию под ваши симптомы',
@@ -29,7 +29,8 @@ const CANNOT = [
 ]
 
 export default function Consult() {
-  const known = getKnownChannel()
+  const stored = getKnownChannel()
+  const known = stored && BOT_LINK[stored.channel] ? stored : null
 
   return (
     <>
@@ -68,7 +69,7 @@ export default function Consult() {
               className="btn btn-primary"
               onClick={() => {
                 haptic('medium')
-                openBot(BOT_LINK[known.channel], 'consult')
+                openBot(BOT_LINK[known.channel])
               }}
             >
               Открыть чат с помощником
@@ -85,7 +86,7 @@ export default function Consult() {
                     className="list-item"
                     onClick={() => {
                       haptic('light')
-                      openBot(BOT_LINK[channel], 'consult')
+                      openBot(BOT_LINK[channel])
                     }}
                   >
                     <div className="li-title">{label}</div>
