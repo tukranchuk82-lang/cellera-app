@@ -21,6 +21,12 @@ export function captureChannelFromUrl() {
   rememberChannel(channel, params.get('id') ?? undefined)
 }
 
+/** Внутри мини-аппа канал известен сам — запоминаем его (id из ссылки не затираем) */
+export function captureChannelFromPlatform(p: Channel | 'web') {
+  if (p === 'web' || getKnownChannel()?.channel === p) return
+  rememberChannel(p)
+}
+
 export function rememberChannel(channel: Channel, id?: string) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ channel, id } satisfies Known))

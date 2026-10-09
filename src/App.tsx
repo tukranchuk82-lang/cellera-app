@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState, type JSX } from 'react'
 import { TABS, type Nav, type TabId, type View } from './nav'
 import { IcoHome, IcoBook, IcoLeaf, IcoBag, IcoChat } from './ui'
-import { initTelegram, setBackButton, haptic, inTelegram } from './lib/tg'
-import { captureChannelFromUrl } from './lib/channel'
+import { initTelegram, setBackButton, haptic, platform } from './lib/tg'
+import { captureChannelFromUrl, captureChannelFromPlatform } from './lib/channel'
 
 import Home from './screens/Home'
 import About from './screens/About'
@@ -28,6 +28,7 @@ export default function App() {
   useEffect(() => {
     initTelegram()
     captureChannelFromUrl()
+    captureChannelFromPlatform(platform)
     document.body.classList.add('paper-grain')
   }, [])
 
@@ -134,7 +135,7 @@ export default function App() {
         })}
       </nav>
 
-      {!inTelegram && (
+      {platform === 'web' && (
         <div
           style={{
             position: 'fixed',
