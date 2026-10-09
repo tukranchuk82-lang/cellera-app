@@ -1,4 +1,4 @@
-import { LINKS, AUTHOR, DISCLAIMER } from '../data/content'
+import { LINKS, DISCLAIMER } from '../data/content'
 import { TopBar, Section, IcoChat, IcoChevron } from '../ui'
 import { openBot, openExternal, haptic } from '../lib/tg'
 import { getKnownChannel, type Channel } from '../lib/channel'
@@ -132,7 +132,7 @@ export default function Consult() {
               }}
             >
               <div>
-                <div className="li-title">Записаться к {AUTHOR.name.split(' ')[0]}е</div>
+                <div className="li-title">Записаться к Анне</div>
                 <div className="li-sub">Личная консультация гомеопата</div>
               </div>
               <span className="chev">
