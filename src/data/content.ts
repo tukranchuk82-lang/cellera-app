@@ -7,7 +7,7 @@ export const LINKS = {
   wb: '#',
   // Боты с ИИ-консультантом (SaleBot). Метка start=app_cons_online уже в ссылке. Пустая ссылка = бота пока нет, пункт скрыт
   botTelegram: 'https://t.me/cellera_bot?start=app_cons_online',
-  botVk: '',
+  botVk: 'https://vk.me/club229735261?ref=app_cons_online',
   botMax: 'https://max.ru/id760803611251_bot?start=app_cons_online',
 }
 
