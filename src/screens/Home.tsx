@@ -59,6 +59,39 @@ export default function Home({ nav }: { nav: Nav }) {
           </div>
         </div>
 
+        {/* ——— 2. ВПЕРВЫЕ СЛЫШИТЕ ——— */}
+        <Section>
+          <div
+            className="card tap"
+            onClick={() => {
+              haptic('light')
+              nav.go('intro')
+            }}
+            style={{ background: 'var(--sage-wash)', borderColor: 'var(--sage)' }}
+          >
+            <div className="eyebrow" style={{ marginBottom: 6 }}>
+              Впервые слышите?
+            </div>
+            <h3 style={{ marginBottom: 7 }}>Что такое соли Шюсслера</h3>
+            <p className="small muted" style={{ margin: 0 }}>
+              Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и {WORDING.introTeaser}.
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                marginTop: 14,
+                color: 'var(--sage-deep)',
+                fontWeight: 700,
+                fontSize: 15,
+              }}
+            >
+              Читать <IcoChevron s={16} />
+            </div>
+          </div>
+        </Section>
+
         {/* ——— 3. ПОИСК ——— */}
         <Section>
           <div className="search">
@@ -187,39 +220,6 @@ export default function Home({ nav }: { nav: Nav }) {
                   <span className="chev">
                     <IcoChevron />
                   </span>
-                </div>
-              </div>
-            </Section>
-
-            {/* ——— 2. ВПЕРВЫЕ СЛЫШИТЕ ——— */}
-            <Section>
-              <div
-                className="card tap"
-                onClick={() => {
-                  haptic('light')
-                  nav.go('intro')
-                }}
-                style={{ background: 'var(--sage-wash)', borderColor: 'var(--sage)' }}
-              >
-                <div className="eyebrow" style={{ marginBottom: 6 }}>
-                  Впервые слышите?
-                </div>
-                <h3 style={{ marginBottom: 7 }}>Что такое соли Шюсслера</h3>
-                <p className="small muted" style={{ margin: 0 }}>
-                  Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и {WORDING.introTeaser}.
-                </p>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    marginTop: 14,
-                    color: 'var(--sage-deep)',
-                    fontWeight: 700,
-                    fontSize: 15,
-                  }}
-                >
-                  Читать <IcoChevron s={16} />
                 </div>
               </div>
             </Section>
