@@ -1,7 +1,15 @@
 import { BUY_QUALITY, LINKS, DISCLAIMER } from '../data/content'
 import { SALTS } from '../data/salts'
-import { TopBar, Section, IcoChevron, SaltDot, asset } from '../ui'
+import { TopBar, Section, IcoChevron, SaltDot, Accordion, asset } from '../ui'
+import { BuyChips } from '../shop'
+import { PRODUCTS } from '../data/shop'
 import { openExternal, haptic } from '../lib/tg'
+
+const CATALOG = [
+  { title: '12 солей Шюсслера', items: PRODUCTS.filter((p) => /^s\d+$/.test(p.id)) },
+  { title: 'Биокомбинации', items: PRODUCTS.filter((p) => /^(b\d+|five\d)$/.test(p.id)) },
+  { title: 'Набор', items: PRODUCTS.filter((p) => p.id === 'set12') },
+]
 
 export default function Buy() {
   const shifted = SALTS.filter((s) => s.inIndia !== s.n)
@@ -39,28 +47,22 @@ export default function Buy() {
                 <IcoChevron />
               </span>
             </div>
-            <div className="list-item" onClick={() => openExternal(LINKS.ozon)}>
-              <div>
-                <div className="li-title">Ozon</div>
-                <div className="li-sub">Аккаунт «Варница»</div>
-              </div>
-              <span className="chev">
-                <IcoChevron />
-              </span>
-            </div>
-            <div className="list-item" onClick={() => openExternal(LINKS.wb)}>
-              <div>
-                <div className="li-title">Wildberries</div>
-                <div className="li-sub">Аккаунт «Варница»</div>
-              </div>
-              <span className="chev">
-                <IcoChevron />
-              </span>
-            </div>
           </div>
-          <p className="tiny" style={{ marginTop: 10, textAlign: 'center' }}>
-            Ссылки на маркетплейсы будут добавлены
-          </p>
+        </Section>
+
+        <Section title="Каталог на маркетплейсах">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {CATALOG.map((g) => (
+              <Accordion key={g.title} title={g.title}>
+                {g.items.map((p) => (
+                  <div key={p.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
+                    <div className="small">{p.title}</div>
+                    <BuyChips id={p.id} />
+                  </div>
+                ))}
+              </Accordion>
+            ))}
+          </div>
         </Section>
 
         <img

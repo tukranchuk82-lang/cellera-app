@@ -3,8 +3,6 @@ export const LINKS = {
   vk: 'https://vk.com/varnitsa.site',
   tg: 'https://t.me/varnitsassalts',
   taplink: 'https://taplink.cc/bjain',
-  ozon: '#',
-  wb: '#',
   // Боты с ИИ-консультантом (SaleBot). Метка start=app_cons_online уже в ссылке. Пустая ссылка = бота пока нет, пункт скрыт
   botTelegram: 'https://t.me/cellera_bot?start=app_cons_online',
   botVk: 'https://bot.cellera.ru/bot_0_f',

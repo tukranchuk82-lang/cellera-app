@@ -822,3 +822,36 @@ p:last-child {
   text-align: center;
   padding: 26px 8px 6px;
 }
+
+/* ---------- ссылки «купить» ---------- */
+.buy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.buy-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-right: 2px;
+}
+.buy-chip {
+  border: 1.5px solid var(--sage);
+  background: transparent;
+  color: var(--sage-deep);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.buy-chip:active {
+  background: var(--sage-wash);
+}
+.buy-caption {
+  font-size: 12px;
+  color: var(--ink-faint);
+}

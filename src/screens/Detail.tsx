@@ -4,6 +4,13 @@ import { SALTS, saltByN, CHEATSHEET, INFLAMMATION_STAGES } from '../data/salts'
 import { HOT_SEVEN_TEXT, DISCLAIMER } from '../data/content'
 import { TopBar, SaltDot, IcoChevron, WarnBox, Section, Accordion } from '../ui'
 import { haptic } from '../lib/tg'
+import { BuyChips, MentionedBuy } from '../shop'
+import { productById } from '../data/shop'
+
+const saltPotency = (n: number) => {
+  const p = productById(`s${n}`)?.potency
+  return p ? `В продаже ${p}` : undefined
+}
 
 /* ==================== экран группы ==================== */
 
@@ -67,6 +74,7 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
           <p className="lead" style={{ marginTop: 14 }}>
             {c.summary}
           </p>
+          <MentionedBuy text={c.summary} />
         </div>
 
         {c.salts.length > 0 && (
@@ -88,6 +96,8 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
                         {salt.latin}
                       </div>
                       <div className="sr-note">{use.note}</div>
+                      <BuyChips id={`s${use.n}`} caption={saltPotency(use.n)} />
+                      <MentionedBuy text={use.note} />
                     </div>
                   </div>
                 )
@@ -104,7 +114,10 @@ export function ConditionScreen({ slug, nav, onBack }: { slug: string; nav: Nav;
                   <span
                     style={{ flex: 'none', width: 6, height: 6, borderRadius: '50%', background: 'var(--sage)', marginTop: 9 }}
                   />
-                  <span className="small">{t}</span>
+                  <div>
+                    <span className="small">{t}</span>
+                    <MentionedBuy text={t} skipIn={c.summary} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -208,6 +221,12 @@ export function SaltScreen({ n, nav, onBack }: { n: number; nav: Nav; onBack: ()
             </span>
           )}
         </div>
+
+        <Section title="Купить">
+          <div className="card">
+            <BuyChips id={`s${s.n}`} caption={saltPotency(s.n)} />
+          </div>
+        </Section>
 
         <Section title="Тропность">
           <div className="card">
