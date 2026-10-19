@@ -5,6 +5,9 @@ import { CONDITIONS, groupById, searchConditions } from '../data/conditions'
 import { IcoSearch, IcoChevron, SaltDot, Section, asset } from '../ui'
 import { haptic } from '../lib/tg'
 
+/** Фото на первом экране: заменить на фото набора солей, когда будет */
+const HERO_IMG = 'img/salts-2.jpg'
+
 const QUICK = ['orvi', 'fatigue', 'insomnia', 'acne', 'digestion', 'menstrual-pain']
 
 export default function Home({ nav }: { nav: Nav }) {
@@ -34,77 +37,27 @@ export default function Home({ nav }: { nav: Nav }) {
           </div>
         </div>
 
-        {/* ——— 1. ОБ АВТОРЕ ——— */}
-        <div
-          className="card tap rise"
-          style={{ padding: 0, overflow: 'hidden' }}
-          onClick={() => {
-            haptic('light')
-            nav.push({ k: 'about' })
-          }}
-        >
+        {/* ——— 1. ГЕРОЙ: про соли ——— */}
+        <div className="card rise" style={{ padding: 0, overflow: 'hidden' }}>
           <img
-            src={asset('img/anna-home.jpg')}
+            src={asset(HERO_IMG)}
             alt=""
-            style={{ width: '100%', display: 'block', aspectRatio: '4/5', objectFit: 'cover' }}
+            style={{ width: '100%', display: 'block', aspectRatio: '4/5', objectFit: 'cover', objectPosition: '50% 70%' }}
           />
           <div style={{ padding: 20 }}>
-            <div className="eyebrow">Об авторе</div>
-            <h2 style={{ fontSize: 28 }}>{AUTHOR.name}</h2>
-            <p className="small muted" style={{ marginTop: 7 }}>
-              {AUTHOR.roles}
+            <div className="eyebrow">Соли Шюсслера BJAIN</div>
+            <h2 style={{ fontSize: 28 }}>Минеральные соли для клеток и тканей</h2>
+            <p className="small muted" style={{ marginTop: 9 }}>
+              12 солей и 30 биокомбинаций индийского производства. Подскажем, какая соль подходит под ваше состояние и как её принимать.
             </p>
-            <p className="quote" style={{ fontSize: 20, marginTop: 16 }}>
-              {AUTHOR.motto}
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                marginTop: 18,
-                color: 'var(--sage-deep)',
-                fontWeight: 700,
-                fontSize: 15,
-              }}
-            >
-              Читать историю <IcoChevron s={16} />
-            </div>
+            <button className="btn btn-primary" style={{ marginTop: 18 }} onClick={() => nav.go('help')}>
+              Подобрать соль
+            </button>
+            <button className="btn btn-ghost" style={{ marginTop: 10 }} onClick={() => nav.go('buy')}>
+              Где купить
+            </button>
           </div>
         </div>
-
-        {/* ——— 2. ВПЕРВЫЕ СЛЫШИТЕ ——— */}
-        <Section>
-          <div
-            className="card tap"
-            onClick={() => {
-              haptic('light')
-              nav.go('intro')
-            }}
-            style={{ background: 'var(--sage-wash)', borderColor: 'var(--sage)' }}
-          >
-            <div className="eyebrow" style={{ marginBottom: 6 }}>
-              Впервые слышите?
-            </div>
-            <h3 style={{ marginBottom: 7 }}>Что такое соли Шюсслера</h3>
-            <p className="small muted" style={{ margin: 0 }}>
-              Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и {WORDING.introTeaser}.
-            </p>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                marginTop: 14,
-                color: 'var(--sage-deep)',
-                fontWeight: 700,
-                fontSize: 15,
-              }}
-            >
-              Читать <IcoChevron s={16} />
-            </div>
-          </div>
-        </Section>
 
         {/* ——— 3. ПОИСК ——— */}
         <Section>
@@ -125,7 +78,7 @@ export default function Home({ nav }: { nav: Nav }) {
               {results.length === 0 ? (
                 <div className="card">
                   <p className="small muted" style={{ margin: 0 }}>
-                    Ничего не нашлось. Попробуйте другое слово — или спросите напрямую в разделе «Вопрос».
+                    Ничего не нашлось. Попробуйте другое слово — или спросите напрямую в разделе «Консультант».
                   </p>
                 </div>
               ) : (
@@ -237,6 +190,78 @@ export default function Home({ nav }: { nav: Nav }) {
                 </div>
               </div>
             </Section>
+
+            {/* ——— 2. ВПЕРВЫЕ СЛЫШИТЕ ——— */}
+            <Section>
+              <div
+                className="card tap"
+                onClick={() => {
+                  haptic('light')
+                  nav.go('intro')
+                }}
+                style={{ background: 'var(--sage-wash)', borderColor: 'var(--sage)' }}
+              >
+                <div className="eyebrow" style={{ marginBottom: 6 }}>
+                  Впервые слышите?
+                </div>
+                <h3 style={{ marginBottom: 7 }}>Что такое соли Шюсслера</h3>
+                <p className="small muted" style={{ margin: 0 }}>
+                  Открытие 1873 года, тритурация, чем отличаются от БАДов, что говорит наука и {WORDING.introTeaser}.
+                </p>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    marginTop: 14,
+                    color: 'var(--sage-deep)',
+                    fontWeight: 700,
+                    fontSize: 15,
+                  }}
+                >
+                  Читать <IcoChevron s={16} />
+                </div>
+              </div>
+            </Section>
+
+            {/* ——— ОБ АВТОРЕ ——— */}
+            <div
+              className="card tap rise"
+              style={{ padding: 0, overflow: 'hidden' }}
+              onClick={() => {
+                haptic('light')
+                nav.push({ k: 'about' })
+              }}
+            >
+              <img
+                src={asset('img/anna-home.jpg')}
+                alt=""
+                style={{ width: '100%', display: 'block', aspectRatio: '4/5', objectFit: 'cover' }}
+              />
+              <div style={{ padding: 20 }}>
+                <div className="eyebrow">Об авторе</div>
+                <h2 style={{ fontSize: 28 }}>{AUTHOR.name}</h2>
+                <p className="small muted" style={{ marginTop: 7 }}>
+                  {AUTHOR.roles}
+                </p>
+                <p className="quote" style={{ fontSize: 20, marginTop: 16 }}>
+                  {AUTHOR.motto}
+                </p>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    marginTop: 18,
+                    color: 'var(--sage-deep)',
+                    fontWeight: 700,
+                    fontSize: 15,
+                  }}
+                >
+                  Читать историю <IcoChevron s={16} />
+                </div>
+              </div>
+            </div>
 
             <p className="disclaimer">{DISCLAIMER}</p>
           </>
